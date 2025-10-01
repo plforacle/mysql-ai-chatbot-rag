@@ -32,24 +32,24 @@
 
         {
 
-          "title": "Lab 3: Build and Test Apache / PHP Installation",
+          "title": "Lab 4: Build and Test Apache / PHP Installation",
           "filename": "../../build-lamp/build-lamp.md"
         },
 
         {
 
-          "title": "Lab 4: Build Chatbot Application ",
+          "title": "Lab 5: Build Chatbot Application ",
           "filename": "../../build-chatbot/build-chatbot.md"
         },
 
         {
-          "title": "Lab 6: Setup Sakila Sample Database and configure Vector datatype",
+          "title": "Lab 6: Setup Sakila Sample Database and prepare for Pure RAG",
           "filename": "../../setup-sakila/setup-sakila.md"
         },
         
         {
 
-          "title": "Lab 7: Build MySQL Vector AI Application",
+          "title": "Lab 7: Build MySQL AI RAG Application",
           "filename": "../../build-ai-app/build-ai-app.md"
         },
 

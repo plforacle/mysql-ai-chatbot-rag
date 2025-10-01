@@ -13,7 +13,7 @@ In this lab, you will be guided through the following tasks:
 
 - Install  Sakila
 - Explore the Sakila Database in MySQL
-- Add the vector column to the Sakila film table
+- Prepare Sakila for  RAG processing
 
 ### Prerequisites
 
@@ -21,114 +21,72 @@ This lab assumes you have:
 
 - Completed Labs 5
 
-## Task 1: Install Sakila Database
 
-1. Connect to **mysql-compute** instance using Cloud Shell (**Example:** ssh -i  ~/.ssh/id_rsa opc@132.145.17….)
+## Task 1: Build and Review  Sakila database
 
-    ```bash
-    <copy>ssh -i ~/.ssh/id_rsa opc@<your_compute_instance_ip></copy>
-    ```
+1. If not already connected with SSH, on Command Line, connect to the Compute instance using SSH ... be sure replace the  "private key file"  and the "new compute instance IP"
 
-    ![CONNECT](./images/ssh-login-2.png " ")
+     ```bash
+    <copy>ssh -i private_key_file opc@new_compute_instance_ip</copy>
+     ```
 
-2. Change to home directory
 
-    ```bash
-    <copy>cd /home/opc</copy>
-    ```
-
-3. Download the Sakila Database
-
-    ```bash    
-    <copy>wget https://objectstorage.us-ashburn-1.oraclecloud.com/p/bZJU1s_dUgBBWjMp34WFKqVGJvDBnC_yFg9PrOawSlCZ6GblRwjcb4r0pSPIrL5k/n/idazzjlcjqzj/b/mysql-ee-downloads/o/sakila-db.tar.gz</copy>
-    ```
-
-4. Extract the contents of the "sakila-db.tar.gz" archive file. you should see two .sql files: sakila-data.sql and sakila-schema.sql
+2. Download the Sakila files
 
     ```bash
-    <copy>tar -xvf sakila-db.tar.gz</copy>
+    <copy>cd ~/mysql-ai-workshop
+    wget https://downloads.mysql.com/docs/sakila-db.tar.gz</copy>
     ```
-
-5. Change to the sakila directory
+3. Unzip the  Sakila files
 
     ```bash
-    <copy>cd sakila-db</copy>
+    <copy>tar -xzf sakila-db.tar.gz</copy>
     ```
-
-6. Connect to the MySQL server. Enter your password when prompted
+4. Login to MySQL
 
     ```bash
-    <copy>mysqlsh -uadmin -hlocalhost -p</copy>
+    <copy>mysql -h localhost -u admin -p</copy>
     ```
-
-7. Execute the sakila-schema.sql script to create the database structure
+5. Create Sakila database
 
     ```bash
-    <copy>SOURCE sakila-schema.sql;</copy>
+    <copy>SOURCE ~/mysql-ai-workshop/sakila-db/sakila-schema.sql;</copy>
     ```
-
-8. Execute the sakila-data.sql script to populate the database structure
+6. Load data into Sakila
 
     ```bash
-    <copy>SOURCE sakila-data.sql;</copy>
+    <copy>SOURCE ~/mysql-ai-workshop/sakila-db/sakila-data.sql;</copy>
     ```
 
-9. Verify the installation
+7. Verify Created tables
 
     ```bash
-    <copy>show databases;</copy>
+    <copy>USE sakila;
+    SHOW TABLES;</copy>
     ```
+    ![List Sakila tables](./images/list-sakila-tables.png "List Sakila tables")
 
-## Task 2: Explore the Sakila Database in MySQL
-
-1. Point to the sakila dabase
+8. Verify data loaded
 
     ```bash
-    <copy>use sakila;</copy>
+    <copy>SELECT COUNT(*) FROM film;
+    SELECT COUNT(*) FROM actor;
+    SELECT COUNT(*) FROM customer;</copy>
     ```
+    ![Sakila data sizes](./images/list-sakila-tables.png "Sakila data sizes")
 
-2. List the sakila tables
+9. Explore sample data
 
-    ```bash
-    <copy>show tables;</copy>
     ```
-
-3. Here is a simplified ERD (Entity Relationship Diagram) of the Sakila Database. It includes six main tables:
-
-    - CUSTOMER - Stores basic customer information
-    - RENTAL - Tracks when customers rent films
-    - PAYMENT - Records customer payments for rentals
-    - INVENTORY - Represents physical copies of films available in stores
-    - **FILM - Contains information about the movies themselves (focus table)**
-    - STORE - Represents the physical store locations
-
-
-    ![Sakila ERD](./images/sakila-erd-simple.png "Sakila ERD")
-
-
-
-4. List data from the film table
-
-    ```bash
-    <copy>SELECT * FROM film;</copy>
+    <copy> SELECT film_id, title, description, length, rating FROM film LIMIT 5;
+    SELECT * FROM category;</copy>
     ```
+    ![Explore Sakila data](./images/explore-sakila-data.png "Explore Sakila data")
 
-5. Add the vector column to the film table
-
-    ```bash
-    <copy>ALTER TABLE film ADD COLUMN vector_embedding VECTOR(1536);</copy>
-    ```
-
-6. View the vector column of the film table
+10. Exit MySQL.
 
     ```bash
-    <copy>DESC film\G;</copy>
-    ```
-
-7. Exit
-
-    ```bash
-    <copy>\q</copy>
+    <copy>EXIT;</copy>
     ```
 
 You may now **proceed to the next lab**
@@ -139,6 +97,6 @@ You may now **proceed to the next lab**
 
 ## Acknowledgements
 
-- **Author** - Craig Shallahamer, Applied AI Scientist, Viscosity North America
-- **Contributor** - Perside Foster, MySQL Solution Engineering 
-- **Last Updated By/Date** - Perside Foster, MySQL Solution Engineering , July 2025
+- Authors: Craig Shallahamer, Applied AI Scientist, Viscosity North America, Perside Foster, Open Source Principal Partner Solution Engineer
+- Contributors: Open - Source Channel Enablement Team (Nick Mader, Chris Bates, Juliana Castro)
+- Last Updated: Perside Foster, October 2025

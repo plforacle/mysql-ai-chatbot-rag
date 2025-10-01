@@ -4,7 +4,7 @@
 
 ### Building Intelligent Applications with MySQL Enterprise Edition for MySQL AI Vector Search
 
-In this workshop, you will use MySQL Enterprise Edition 9.4.1 with MySQL AI’s built-in language models, vector search, and relational capabilities to build a privacy-preserving film recommendation and Q&A application. You will see how a traditional relational database can power a complete RAG workflow—embeddings, semantic search, and response generation—entirely inside MySQL, keeping your data private and under your control.
+In this workshop, you will use MySQL Enterprise Edition 9.4.1 with MySQL AI's built-in language models, vector search, and relational capabilities to build a privacy-preserving film recommendation and Q&A application. You will see how a traditional relational database can power a complete RAG workflow—embeddings, semantic search, and response generation—entirely inside MySQL, keeping your data private and under your control.
 
 ### What is MySQL Enterprise Edition for MySQL AI?
 
@@ -17,9 +17,9 @@ MySQL Enterprise Edition for MySQL AI integrates machine learning directly into 
 
 Compared to traditional RAG pipelines that rely on external providers, MySQL AI keeps data in-database for privacy, cost predictability, and operational control.
 
-### What You’ll Build and Learn
+### What You'll Build and Learn
 
-You will build a Pure RAG application over the Sakila film database, starting with a terminal-themed chatbot UI and integrating MySQL’s vector and AI functions for end-to-end retrieval and generation.
+You will build a Pure RAG application over the Sakila film database, starting with a terminal-themed chatbot UI and integrating MySQL's vector and AI functions for end-to-end retrieval and generation.
 
 You will learn to:
 - Create and manage VECTOR columns
@@ -81,7 +81,7 @@ You will complete the following phases and labs:
 
 
 3. Setup and Chatbot
-   - Lab 5: Build and test Apache/PHP 
+   - Lab 5: Build and test Apache/PHP
    - Lab 6: Build Pure RAG chatbot interface
 
 
@@ -130,14 +130,10 @@ Cost and performance:
 
 ## Learn More
 
-- MySQL Enterprise Edition: https://www.oracle.com/mysql/enterprise/
 - MySQL AI Announcement Blog: https://blogs.oracle.com/mysql/post/announcing-mysql-ai
-- MySQL AI Documentation: https://dev.mysql.com/doc/refman/9.4/en/vector-functions.html
-- MySQL VECTOR Data Type: https://dev.mysql.com/doc/refman/9.4/en/vector-data-type.html
-- MySQL AI Functions Reference: https://dev.mysql.com/doc/refman/9.4/en/ai-functions.html
 
 ## Acknowledgements
 
 - Authors: Craig Shallahamer, Applied AI Scientist, Viscosity North America, Perside Foster, Open Source Principal Partner Solution Engineer
-- Contributors: Open - Source Channel Enablement Team (Nick Mader, Chris Bates, Juliana Castro)
+- Contributors: Open Source Channel Enablement Team (Nick Mader, Chris Bates, Juliana Castro)
 - Last Updated: Perside Foster, October 2025

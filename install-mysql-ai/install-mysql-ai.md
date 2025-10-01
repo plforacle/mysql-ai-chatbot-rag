@@ -113,6 +113,10 @@ This lab assumes you have:
     ```
 3. Wait for installation to complete (approximately 15-20 minutes depending on network speed for model downloads).
 
+    Final results should look like this:
+
+    ![MySQL AI install result](./images/mysql-ai-install-result.png "MySQL AI install result")
+
 
 ## Task 4: Verify Installation
 
@@ -121,13 +125,17 @@ This lab assumes you have:
     ```bash
     <copy>sudo systemctl status mysqld</copy>
     ```
+    ![MySQL AI status](./images/check-mysql-status.png "MySQL AI status")
+
 2. Check MySQL version. Should show MySQL 9.4.1-ai
 
     ```bash
     <copy>mysql --version</copy>
     ```
 
-3. Login to MySQL
+3. Login to MySQL. Password is  **Workshop2024!** 
+
+    - Save the password for later use.
 
     ```bash
     <copy>mysql -h localhost -u admin -p</copy>
@@ -149,12 +157,12 @@ This lab assumes you have:
     ```bash
     <copy>SELECT sys.ML_LIST_LLMS();</copy>
     ```
-
 7. Exit MySQL.
 
     ```bash
-    EXIT;
+    <copy>EXIT;</copy>
     ```
+
 
 You may now **proceed to the next lab**.
 

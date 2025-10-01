@@ -97,7 +97,7 @@ This lab assumes you have:
 1. Installs the MySQL AI setup tool/installer onto your system
 
     ```bash
-    <copy>sudo dnf localinstall mysql-ai-setup-9.4.1-1.el8.x86_64.rpm -y</copy>
+    <copy>sudo dnf localinstall mysql-ai-setup-9.4.1-1.2.el8.x86_64.rpm -y</copy>
     ```
 2. Install and configure MySQL Server 9.4.1 with AI/ML capabilities (HeatWave GenAI)
     - download the embedded LLM models (llama3.2, e5-small, etc.) **~400GB**

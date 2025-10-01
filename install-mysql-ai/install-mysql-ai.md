@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Developers can access the full range of MySQL Enterprise Edition features for free while learning, developing, and prototyping.You wil be using the latest available download  from Oracle Technical Resources (OTR, formerly Oracle Technology Network, OTN). For more details review the   [MySQL Enterprise Edition Downloads page](https://www.oracle.com/mysql/technologies/mysql-enterprise-edition-downloads.html)
+MySQL AI provides developers the ability to build rich applications with MySQL leveraging built in machine learning, GenAI, LLMs and semantic search. They can create vectors from documents stored in a local file system. Customers can deploy these AI applications on premise or migrate them to MySQL HeatWave for lower cost, higher performance, richer functionality and latest LLMs with no change to their application. This gives developers the flexibility to build their applications on MySQL EE and then deploy them either on premise or in the cloud. 
 
 _Estimated Time:_ 20 minutes
 
@@ -10,29 +10,97 @@ _Estimated Time:_ 20 minutes
 
 In this lab, you will be guided through the following tasks:
 
-- Install MySQL Enterprise Edition
-- Install MySQL Shell and Connect to MySQL Enterprise 
-- Start and test MySQL Enterprise Edition Install
+- Install MySQL AI
+- Start and test MySQL AI
 
 
 ### Prerequisites
 
 This lab assumes you have:
 
-- Completed Labs 4 
-- or a working Oracle Linux machine
+- Completed Labs 2
 
-## Task 1: Get MySQL Enterprise Edition Download from Oracle Technology Network (OTN)
+ssh -i ~/.ssh/your-key opc@<instance-public-ip>
 
-1. Connect to **myserver** instance using Cloud Shell (**Example:** ssh -i  ~/.ssh/id_rsa opc@132.145.17….)
+## Task 1: Connect to OCI compute  and verify storage availability 
+
+1. Connect with SSH, on Command Line, connect to the Compute instance using SSH ... be sure replace the  "private key file"  and the "new compute instance Public IP". Enter  **Yes** for the "Are you sure" question.
 
      ```bash
-    <copy>ssh -i ~/.ssh/id_rsa opc@<your_compute_instance_ip></copy>
+    <copy>ssh -i private_key_file opc@new_compute_instance_public_ip</copy>
+     ```
+
+    ![SSH first login](./images/ssh-first-login.png "SSH first login")
+
+
+1. Verify OCI compute instance 600GB storage is available for use
+
+    ```bash
+    <copy>df -h</copy>
     ```
 
-    ![CONNECT](./images/ssh-login-2.png " ")
+    > **Important:** Your df -h output should show your 600GB storage is already available and mounted!
 
-2. Create a new directory named "tmp"
+    ![Available Storage](./images/aivailable-storage.png "Available Storage")
+
+    The following output entry means: You're all set! You have 570GB of free space available right now
+
+    **/dev/mapper/ocivolume-root  589G   20G  570G   4% /**
+    - Total size: 589GB (close to your 600GB - some space is reserved for filesystem overhead)
+    - Used: 20GB
+    - Available: 570GB free
+    - Mounted at: / (root directory)
+
+## Task 2: Install MySQL AI.
+
+1. Create installation folder
+
+    ```bash
+    mkdir ~/mysql-ai-workshop
+    ```
+2. Go to new directory 
+
+    ```bash
+    cd ~/mysql-ai-workshop
+    ```
+3. Download MySQL AI file
+    ```bash    
+    wget https://objectstorage.us-ashburn-1.oraclecloud.com/p/ywKKB1ymwLAeMUa3yiA4KE1l1EUu-xz4pXJC_XCPrxzUe3HKcKkTIYrUWk5gPk1C/n/idazzjlcjqzj/b/mysql-ai-store/o/V1051679-01.zip
+    ```
+4. Unzip the downloaded file
+
+    ```bash
+    unzip V1051679-01.zip
+    ```
+
+5. Make sure the required files are available.
+
+    ```bash
+    ls -la
+    find . -name "*.rpm"
+    ```
+
+#### Task 3: Install MySQL AI (15 minutes)
+
+1. Installs the MySQL AI setup tool/installer onto your system
+
+    ```bash
+    sudo dnf localinstall mysql-ai-setup-9.4.1-1.el8.x86_64.rpm -y
+    ```
+2. Install  and configure MySQL Server 9.4.1 with AI/ML capabilities (HeatWave GenAI), download the embedded LLM models (llama3.2, e5-small, etc.), set up the ML functions and procedures, and starts the MySQL service. 
+    ```bash
+    sudo mysql-ai-setup --cli \
+        --mysql-root-user=admin \
+        --mysql-root-password='Workshop2024!' \
+        --mysql-root-allow-remote-connection \
+        --secure-file-priv=/var/lib/mysql-files \
+        --skip-ai-encryption
+    ```
+3. Wait for installation to complete (5-10 minutes)
+
+
+
+1. Create a new directory named "tmp"
 
     ```bash
     <copy>mkdir tmp</copy>

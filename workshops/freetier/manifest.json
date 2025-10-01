@@ -25,6 +25,12 @@
         },
 
         {
+          "title": "Lab 3: Install MySQL AI",
+          "filename": "../../install-mysql-ai/install-mysql-ai.md"
+        },
+
+
+        {
 
           "title": "Lab 3: Build and Test Apache / PHP Installation",
           "filename": "../../build-lamp/build-lamp.md"
@@ -34,10 +40,6 @@
 
           "title": "Lab 4: Build Chatbot Application ",
           "filename": "../../build-chatbot/build-chatbot.md"
-        },
-        {
-          "title": "Lab 5: Install Enterprise Edition",
-          "filename": "../../install-ee/install-ee.md"
         },
 
         {

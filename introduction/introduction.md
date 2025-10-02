@@ -2,7 +2,7 @@
 
 ## About this Workshop
 
-### Building Intelligent Applications with MySQL Enterprise Edition for MySQL AI Vector Search
+### Building  A Pure RAG Application with MySQL Enterprise Edition for MySQL AI
 
 In this workshop, you will use MySQL Enterprise Edition 9.4.1 with MySQL AI's built-in language models, vector search, and relational capabilities to build a privacy-preserving film recommendation and Q&A application. You will see how a traditional relational database can power a complete RAG workflow—embeddings, semantic search, and response generation—entirely inside MySQL, keeping your data private and under your control.
 

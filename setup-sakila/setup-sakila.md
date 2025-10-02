@@ -11,8 +11,7 @@ _Estimated Time:_ 20 minutes
 
 In this lab, you will be guided through the following tasks:
 
-- Install  Sakila
-- Explore the Sakila Database in MySQL
+- Install  and explore Sakila
 - Prepare Sakila for  RAG processing
 
 ### Prerequisites
@@ -83,12 +82,62 @@ This lab assumes you have:
     ```
     ![Explore Sakila data](./images/explore-sakila-data.png "Explore Sakila data")
 
-10. Exit MySQL.
+
+
+## Task 2: Prepare Sakila for RAG processing
+1. Add primary keys and constraints (basic ones for RAG functionality)
+
+    ```bash
+    <copy>ALTER TABLE actor ADD PRIMARY KEY (actor_id);
+    ALTER TABLE category ADD PRIMARY KEY (category_id);
+    ALTER TABLE film ADD PRIMARY KEY (film_id);
+    ALTER TABLE film_actor ADD PRIMARY KEY (actor_id, film_id);
+    ALTER TABLE film_category ADD PRIMARY KEY (film_id, category_id);
+    ALTER TABLE language ADD PRIMARY KEY (language_id)</copy>;
+    ```
+2. Now create the RAG embeddings table
+
+    ```bash
+    <copy>CREATE TABLE film_rag (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        film_id SMALLINT,
+        content TEXT,
+        embedding VECTOR(384) COMMENT 'GENAI_OPTIONS=EMBED_MODEL_ID=all_minilm_l12_v2',
+        FOREIGN KEY (film_id) REFERENCES film(film_id)
+    );</copy>
+    ```
+
+3. Populate with enriched film data
+
+    ```bash
+    <copy>INSERT INTO film_rag (film_id, content)
+    SELECT
+        f.film_id,
+        CONCAT(
+            'Title: ', f.title, '. ',
+            'Description: ', f.description, '. ',
+            'Category: ', c.name, '. ',
+            'Language: ', l.name, '. ',
+            'Actors: ', GROUP_CONCAT(CONCAT(a.first_name, ' ', a.last_name) SEPARATOR ', '), '. ',
+            'Rating: ', f.rating, '. ',
+            'Release Year: ', f.release_year, '. ',
+            'Length: ', f.length, ' minutes. ',
+            'Special Features: ', f.special_features
+        ) as content
+    FROM film f
+    JOIN film_category fc ON f.film_id = fc.film_id
+    JOIN category c ON fc.category_id = c.category_id;</copy>
+    ```
+4. Generate embeddings
+
+    ```bash
+    <copy>CALL sys.ML_EMBED_TABLE('sakila_2.film_rag.content', 'sakila_2.film_rag.embedding', JSON_OBJECT('model_id', 'all_minilm_l12_v2'));</copy>
+    ```
+5. Exit MySQL.
 
     ```bash
     <copy>EXIT;</copy>
     ```
-
 You may now **proceed to the next lab**
 
 ## Learn More

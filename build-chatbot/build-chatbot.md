@@ -37,10 +37,10 @@ In this lab, you will be guided through the following tasks:
 
 - An Oracle Trial or Paid Cloud Account
 - Apache Web server with PHP 8.2+
-- Access to Claude 3.7 Sonnet AI assistant  
-- Access to OpenAI API, plus API key for 'gpt-4o-mini'  AI model
+- Access to Claude Sonnet 4.5 AI assistant
+- Access to MySQL AI Models (in-database): Embeddings: `all_minilm_l12_v2`
 - Basic understanding of HTML, CSS, JavaScript and PHP
-- Completed Lab 3
+- Completed Lab 4
 
 ## Task 1: Build Basic Chat Interface (Full-Screen Version)
 
@@ -50,28 +50,30 @@ In this lab, you will be guided through the following tasks:
     <copy>ssh -i private_key_file opc@new_compute_instance_ip</copy>
      ```
 
-2. Create applicationn folder: 
+2. Create applicationn folder:
 
       ```bash
       <copy> cd /var/www/html</copy>
-      ``` 
+      ```
 
       ```bash
       <copy> sudo mkdir chatbot</copy>
-      ``` 
+      ```
 
       ```bash
       <copy> cd chatbot</copy>
-      ``` 
+      ```
 
-3. **Prompt 1: Basic Chat Interface (Full-Screen Version)** 
-      Copy prompt to Claude.ai
+
+      **Start building the  Basic Chat Interface (Full-Screen Version)**
+3. Copy prompt to Claude.ai
 
       ```bash
       <copy>Prompt 1: Basic Chat Interface (Full-Screen Version)
+
       Files:
-      index.html - Basic web interface with three sections
-      styles.css - Variable-driven CSS for easy customization
+      - index.html - Basic web interface with three sections
+      - styles.css - Variable-driven CSS for easy customization
 
       I am a developer and an AI enthusiast.
 
@@ -84,15 +86,18 @@ In this lab, you will be guided through the following tasks:
       The app contains three web page sections, which is always in dark mode, contained within a single column, with all text defaulting to the Monaco font. All main elements should have a CSS variable. The design will likely be changed, so please use Flexbox.
 
       Here is how to setup the three sections:
+      - Section 1. Add a blue menu bar with 2 menu items; 'New Chat' and 'About'. The item text in white. Ensure the font is Monaco using CSS variables.
+      - Section 2. Add a classic chat dialog displaying both the AI response (text color: classic bright terminal green, left justified) and the user input (text color: bright yellow, right justified). Add some placeholder text for the AI response to validate the chat dialog layout. Ensure the font is Monaco using CSS variables.
+      - Section 3. On the bottom of the screen and on the same row spanning entire width of the screen, add the user input field and its submit button. Add a grey horizontal line at the top of this section with some space between the line and user input and submit button. Ensure the font is Monaco using CSS variables.
 
-      Section 1. Add a blue menu bar with 2 menu items; 'New Chat' and 'About'. The item text in white. Ensure the font is Monaco using CSS variables.
-      Section 2. Add a classic chat dialog displaying both the AI response (text color: classic bright terminal green, left justified) and the user input (text color: bright yellow, right justified). Add some placeholder text for the AI response to validate the chat dialog layout. Ensure the font is Monaco using CSS variables.
-      Section 3. On the bottom of the screen and on the same row spanning entire width of the screen, add the user input field and its submit button. Add a grey horizontal line at the top of this section with some space between the line and user input and submit button. Ensure the font is Monaco using CSS variables.
+      **IMPORTANT:** Create artifacts with clear file names (index.html and styles.css) and use cache-busting CSS link: `<link rel="stylesheet" href="styles.css?v=1">`
 
       Your task is to code according to the above instructions and nothing else.
+
       Respond with each web app file briefly explaining its function.
 
-      </copy> ```
+      </copy>
+      ```
 
    ![Chat generated file](./images/claude-ai.png "Chat generated file")
 
@@ -100,19 +105,19 @@ In this lab, you will be guided through the following tasks:
 
     ```bash
     <copy> sudo nano index.html</copy>
-    ```  
+    ```
 
 5. Copy generated styles.css file to "chatbot"" folder
 
     ```bash
     <copy> sudo nano styles.css</copy>
-    ```  
+    ```
 
 6. From your local machine browser, test the Application Example: http://129.213.167.../chatbot
 
    ![Chatbot App](./images/chatbot-app.png "Chatbot App")
 
-   **TESTING:**  
+   **TESTING:**
    - I am Captain Craig.
    - Hit Send (No response)
 
@@ -124,12 +129,14 @@ In this lab, you will be guided through the following tasks:
 
       ```bash
       <copy>Prompt 2: Multiline Input Enhancement
-      Files : I want completed files with updates  included
-      index.html - Updated textarea in input section
-      styles.css - Styling for multiline input
+
+      Files: I want completed files with updates included
+      - index.html - Updated textarea in input section
+      - styles.css - Styling for multiline input
 
       Please enhance the chatbot so the user has the ability to enter multiple lines, such as three lines, instead of just one. Is this possible?
-      </copy>``` 
+      </copy>
+      ```
 
 2. Replace index.html file with new content in  "chatbot" folder
 
@@ -156,9 +163,9 @@ In this lab, you will be guided through the following tasks:
 
 4. From your local machine browser, test the Application Example: http://129.213.167.../chatbot
 
-   **TESTING:**  
+   **TESTING:**
    - I am Captain Craig.
-   - Hit "Shift + Enter" 
+   - Hit "Shift + Enter"
    - Do you remember my name?
    - Hit Send (No response)
 
@@ -168,43 +175,54 @@ In this lab, you will be guided through the following tasks:
       Copy prompt to Claude.ai
 
       ```bash
-      <copy>Prompt 3: LLM Integration
+      <copy>Prompt 3: MySQL AI Integration
+
       Files: I want completed files with updates included
-      api_key.php - Store OpenAI API key
-      chat_handler.php - Process user input and connect to OpenAI API
-      index.html - Updated with script to handle API calls
-      styles.css - Updated to ensure full-screen display
+      - api_key.php - Store MySQL AI database connection details
+      - chat_handler.php - Process user input and connect to MySQL AI 9.4.1
+      - index.html - Updated with script to handle API calls
+      - styles.css - Updated to ensure full-screen display
 
-      This step focuses on enhancing the existing code base enabling an LLM to respond and display its response.
-      Maintain the full-screen visual design established in Step 1 by ensuring all container elements use 100% width.
-      Have the LLM talk like a Pirate. Do not forget that the initial AI greeting also must talk like a Pirate.
+      This step focuses on enhancing the existing code base enabling MySQL AI 9.4.1 LLM to respond and display its response.
 
-      Use the OpenAI 'gpt-4o-mini' model.
-      The OpenAI API key needs to be stored in a separate file. I am aware of the security risk, but do this anyway.
-      The LLM response text is to be displayed in the AI response dialog output.
-      If a web server is needed, I will use PHP which is installed.
+      MySQL AI Integration Requirements:
+      - Use MySQL AI 9.4.1 with the sys.ML_GENERATE function
+      - Function syntax: sys.ML_GENERATE(prompt, JSON_OBJECT('task', 'generation', 'model_id', 'llama3.2-3b-instruct-v1'))
+      - The function returns JSON format: {"text": "response", "license": "..."}
+      - Extract only the "text" field from the JSON response for display
+      - Include proper JSON parsing and error handling for malformed responses
 
-      For styles.css, ensure that:
-      - All container elements have width: 100% explicitly set
-      - The main container uses width: 100vw
-      - HTML and body elements have width and height set to 100% with overflow hidden
-      - All flexbox containers properly expand to fill available space
+      Database Connection:
+      - Store connection details in api_key.php (security risk acknowledged)
+      - Use PDO with proper error handling and prepared statements
+
+      Frontend Integration:
+      - Add jQuery for AJAX functionality
+      - Handle form submission with POST to chat_handler.php
+      - Display responses in the existing chat dialog
+      - Include loading states and error messaging
+
+      CSS Requirements:
+      - Maintain full-screen visual design from Step 1
+      - Ensure all container elements use width: 100%
+      - Main container uses width: 100vw
+      - HTML/body elements: width and height 100%, overflow hidden
 
       Your task is to code according to the above instructions and nothing else.
-      Respond with each web app file briefly explaining its function.
-      </copy>```
+      </copy>
+      ```
 
 2. Copy generated api\_key.php file to "chatbot"" folder **and Replace "YOUR\_OPENAI\_API_KEY\_HERE" with your actual API key**
 
     ```bash
     <copy> sudo nano api_key.php</copy>
-    ```  
+    ```
 
 3. Copy generated chat\_handler.php file to "chatbot"" folder
 
     ```bash
     <copy> sudo nano chat_handler.php</copy>
-    ```  
+    ```
 
 4. Replace index.html file with new content in  "chatbot" folder
 
@@ -230,12 +248,12 @@ In this lab, you will be guided through the following tasks:
 
 6. From your local machine browser, test the Application Example: http://129.213.167.../chatbot 
 
-   **TESTING:**  
+   **TESTING:**
    - I am Captain Craig.
    - I want to sail very far away from here! Will you join me?
    - Do you remember my name?
 
-      **NOTE - In case you see the following error 
+      **NOTE - In case you see the following error
             " Sorry, there was an error processing your request. Please try again later. (Error: )"
       - Review the api_key.php file and make sure you have entered the correct API key .
 
@@ -246,9 +264,10 @@ In this lab, you will be guided through the following tasks:
 
       ```bash
       <copy>Prompt 4: Conversation Memory
+
       Files Modified:
-      chat_handler.php - Add session handling for chat history
-      index.html - Update "New Chat" button logic
+      - chat_handler.php - Add session handling for chat history
+      - index.html - Update "New Chat" button logic
 
       Enhance the chatbot to maintain context throughout a conversation by:
       1. Storing conversation history in PHP sessions
@@ -269,7 +288,8 @@ In this lab, you will be guided through the following tasks:
       - Add a clear_history action to reset the conversation when "New Chat" is clicked
 
       The goal is to make the chatbot feel more natural by remembering previous interactions until the user explicitly starts a new chat.
-      </copy>```
+      </copy>
+      ```
 
 
 2. Replace chat\_handler.php file with new content in  "chatbot" folder
@@ -310,9 +330,11 @@ In this lab, you will be guided through the following tasks:
 
       ```bash
       <copy>Prompt 5: Text Formatting Enhancement
+
       Files Modified:
-      index.html - Add proper markdown and code syntax highlighting
-      styles.css - Add styling for formatted text and code
+      - index.html - Add proper markdown and code syntax highlighting
+      - styles.css - Add styling for formatted text and code
+      - chat_handler.php - Update system prompt for balanced formatting
 
       Enhance the chatbot so it properly displays formatted text, including plain text, markdown, and code snippets in various languages.
 
@@ -321,38 +343,50 @@ In this lab, you will be guided through the following tasks:
       - For AI responses, implement markdown parsing using Showdown.js with appropriate configuration
       - Add code syntax highlighting using Prism.js core and autoloader for different programming languages
       - Ensure the welcome message stays as simple plain text with no formatting
-      - Ensure consistent formatting across different types of AI responses
+      - Configure AI to provide direct, concise responses without unnecessary formatting
+      - **Add automatic session clearing on page load to ensure fresh conversations**
 
       Implementation details:
-      1. Include the correct libraries in the proper order:
-         - jQuery first
-         - Showdown.js for markdown conversion
-         - Prism.js core component
-         - Prism autoloader plugin (instead of individual language components)
+      Include the correct libraries in the proper order:
+      - jQuery first
+      - Showdown.js for markdown conversion
+      - Prism.js core component
+      - Prism autoloader plugin (instead of individual language components)
 
-      2. Configure Showdown properly:
-         - Enable GitHub-style code blocks
-         - Enable tables, task lists, and strikethrough
-         - Do NOT use the 'prettify' extension which causes errors
+      Configure Showdown properly:
+      - Enable GitHub-style code blocks
+      - Enable tables, task lists, and strikethrough
+      - Do NOT use the 'prettify' extension which causes errors
 
-      3. Implement safe code highlighting:
-         - Use a try-catch block around highlighting operations
-         - Add a class to processed code blocks to prevent re-processing
-         - Use setTimeout to ensure DOM is ready before highlighting
+      Implement safe code highlighting:
+      - Use a try-catch block around highlighting operations
+      - Add a class to processed code blocks to prevent re-processing
+      - Use setTimeout to ensure DOM is ready before highlighting
 
-      4. Update the chat_handler.php:
-         - Do NOT use nl2br() function on AI responses
-         - Update the system prompt to instruct AI to use proper markdown formatting
-         - Return raw AI responses without HTML modification
+      **Session Management:**
+      - Add automatic conversation history clearing on page load
+      - Create a separate clearConversationHistory() function for reusability
+      - Ensure every fresh visit starts with a clean conversation state
+      - Maintain "New Chat" button functionality for manual resets during sessions
 
-      5. Style code blocks and formatted text appropriately:
-         - Add proper styling for headings, lists, links, blockquotes, tables
-         - Ensure code blocks have proper background and text colors
-         - Preserve user message formatting with pre tags and CSS
+      Update the chat_handler.php system prompt:
+      - Instruct AI to provide direct, concise answers
+      - Use markdown/formatting only when specifically beneficial
+      - Avoid unnecessary headers, verbose explanations, or over-formatting
+      - When generating code, provide clean examples without extra commentary unless requested
+      - Do NOT use nl2br() function on AI responses
 
-      The goal is to make the chatbot display formatted text naturally while avoiding JavaScript errors that might prevent entering new commands after displaying formatted code.
+      Style code blocks and formatted text appropriately:
+      - Add proper styling for headings, lists, links, blockquotes, tables
+      - Ensure code blocks have proper background and text colors
+      - Preserve user message formatting with pre tags and CSS
 
-      </copy>``` 
+      **IMPORTANT:** Include cache-busting CSS link with incremented version number and ensure artifacts are named clearly (index.html and styles.css).
+
+      The goal is to make the chatbot display formatted text naturally when needed while maintaining concise, direct responses, preventing JavaScript errors, and ensuring every user starts with a fresh conversation state.
+
+      </copy>
+      ```
 
 2. Replace index.html file with new content in  "chatbot" folder
 
@@ -391,7 +425,7 @@ In this lab, you will be guided through the following tasks:
    ![Chatbot SQL Multi Line](./images/chatbot-sql-multi.png "Chatbot SQL Multi Line")
 
    **TESTING**
-   - I am Captain Craig. 
+   - I am Captain Craig.
    - Please generate a multiline SQL statement.
    - Please generate a 200 word story about a baby bird breaking out of its shell for the first time.
 
@@ -404,10 +438,11 @@ In this lab, you will be guided through the following tasks:
 
       ```bash
       <copy>Prompt 6: Code Copy Functionality with HTTP Fallback
+
       Files Modified:
-      index.html  
-      styles.css  
-      
+      - index.html
+      - styles.css
+
       Generate code to enhance the chatbot with a convenient way to copy code snippets by adding a pirate-themed copy button to code blocks that works in both secure (HTTPS) and non-secure (HTTP) environments.
 
       Requirements:
@@ -416,6 +451,7 @@ In this lab, you will be guided through the following tasks:
       3. Provide visual feedback when the code is successfully copied
       4. Make sure the button works with all code languages
       5. Ensure compatibility with HTTP connections by implementing a fallback method
+      6. **Ensure cross-browser compatibility, especially Chrome and Firefox**
 
       Implementation details:
       - Add a function to identify and process all code blocks in AI responses
@@ -424,10 +460,22 @@ In this lab, you will be guided through the following tasks:
       - Add pirate-themed styling with treasure colors (gold gradient)
       - Implement hover effects and success feedback animation
       - Ensure mobile compatibility with touch-friendly design
+      - **Set initial button opacity to 0.7 instead of 0 for Chrome compatibility**
+      - **Add -webkit-appearance: none for consistent cross-browser button styling**
+      - **Include both parent hover and direct button hover states for better visibility**
 
-      The goal is to make it easier for users to use the code provided by the AI while adding a fun visual element to the interface, and ensure the functionality works on both secure and non-secure connections.
+      **Cross-browser compatibility fixes:**
+      - Use opacity: 0.7 instead of opacity: 0 to ensure buttons are discoverable in all browsers
+      - Add -webkit-appearance, -moz-appearance, and appearance: none for consistent styling
+      - Include multiple hover selectors: both `.ai-message pre:hover .copy-button` and `.copy-button:hover`
+      - Increment CSS version number for cache-busting
 
-      </copy>```
+      **IMPORTANT:** Include cache-busting CSS link with incremented version number and ensure artifacts are named clearly (index.html and styles.css).
+
+      The goal is to make it easier for users to use the code provided by the AI while adding a fun visual element to the interface, ensure the functionality works on both secure and non-secure connections, and guarantee compatibility across all major browsers including Chrome and Firefox.
+
+      </copy>
+      ```
 
 2. Replace index.html file with new content in  "chatbot" folder
 
@@ -475,9 +523,11 @@ In this lab, you will be guided through the following tasks:
       index.html - Add popup overlay and handling for About button
       styles.css - Styling for popup window
 
-      I want to improve this chatbot so when the About button is pressed a small window pops up with the centered text, "This Chatbot was created during the MySQL and HeatWave Summit in April 2025!" How can I do this?
+      I want to improve this chatbot so when the About button is pressed a small window pops up with the centered text, "This Chatbot was " How can I do this?
+      I want to improve this chatbot so when the About button is pressed a small window pops up with the centered text, "This Chatbot was created during the MySQL AI Introduction October 2025!" How can I do this?
 
-      </copy>```
+      </copy>
+      ```
 
 2. Replace index.html file with new content in  "chatbot" folder
 
@@ -512,63 +562,52 @@ In this lab, you will be guided through the following tasks:
       Copy prompt to Claude.ai
 
       ```bash
-      <copy>Prompt 8: Sample Prompts Feature
-      Files Modified:
-      index.html - Add Sample Prompts menu item and popup dialog
-      styles.css - Add styling for sample prompts popup and categories
+      <copy>Prompt 8: Sample Prompts Feature with Conversation Memory Improvements
 
-      Enhance the chatbot with a Sample Prompts feature that allows users to select from a predefined list of test queries instead of typing them manually.
+      Files Modified:
+      - index.html - Add Sample Prompts menu item and popup dialog
+      - styles.css - Add styling for sample prompts popup and categories  
+      - chat_handler.php - Fix conversation memory context formatting for reliable AI responses
+
+      Enhance the chatbot with a Sample Prompts feature that allows users to select from predefined test queries, while also improving the conversation memory system for more reliable context handling.
 
       Requirements:
-      1. Add a "Sample Prompts" item to the top menu bar
-      2. Create a popup dialog that displays categorized sample queries
+      1. Add a "Sample Prompts" item to the top menu bar between "New Chat" and "About"
+      2. Create a popup dialog that displays categorized sample queries with click-to-use functionality
       3. Allow users to select any query to be automatically inserted into the input field
-      4. Organize sample prompts by feature type (Basic Conversation, Code Highlighting, etc.)
+      4. Organize sample prompts by feature type (Basic Conversation, Code Highlighting, Context Memory, etc.)
+      5. **Fix conversation memory context formatting to prevent AI confusion and ensure reliable responses**
 
       Implementation details:
-      - Add a new menu item in the header section next to "About"
-      - Create a popup overlay similar to the About popup, but with categories and lists
-      - Style sample prompts as clickable elements with hover effects
-      - Implement JavaScript to populate the input field when a sample is clicked
-      - Include multiline samples to demonstrate the textarea capabilities
-      - Ensure the popup is scrollable for mobile devices with many samples
+      - Add a new menu item in the header section with proper event handling
+      - Create a large popup overlay with scrollable content and categorized sections
+      - Style sample prompts as clickable elements with hover effects and mobile responsiveness
+      - Implement JavaScript to populate the input field when a sample is clicked and close the popup
+      - Include multiline samples to demonstrate textarea capabilities
+      - **Update chat_handler.php conversation context building with cleaner formatting for the Llama model**
+      - **Improve session management with session regeneration for reliable history clearing**
+      - **Reduce conversation history limit to 10 messages to prevent token overflow**
 
       Sample Prompts to Include:
+      1. Basic Conversation: "Hello, how are you today?", "What can you help me with?"
+      2. Multiline Input: Function examples with proper code formatting
+      3. Markdown Formatting: Requests for markdown explanations and examples
+      4. Code Highlighting: Python, HTML, SQL, and JavaScript code requests including "multiline SQL with error"
+      5. Context Memory: "My name is John", "What is my name?", "I work as a software developer", "What do I do for a living?"
+      6. Complex Conversation: "I have a cat named Whiskers", "She's 3 years old", "What can you tell me about my pet?"
 
-      1. Basic Conversation:
-         - "Hello, how are you today?"
-         - "What can you help me with?"
+      **Critical Backend Fixes (chat_handler.php):**
+      - Simplify conversation context format using clear "User:" and "Assistant:" labels
+      - Add session regeneration to clear_history action for complete session cleanup
+      - Reduce conversation history limit from 20 to 10 messages
+      - Improve context building logic to prevent AI confusion with previous conversation fragments
+      - Ensure conversation memory works reliably for context-dependent queries
 
-      2. Multiline Input:
-         - "Let me write a sample function:
-      function calculateArea(width, height) {
-      return width * height;
-      }
-      How does this look?"
+      **Important:** This prompt includes both the UI enhancement AND the necessary backend fixes to maintain conversation memory reliability. The conversation context formatting improvements are essential for the Llama 3.2 3B model to properly handle conversation history without confusion.
 
-      3. Markdown Formatting:
-         - "Can you explain what markdown is and give examples of basic formatting?"
-         - "Provide a summary of the main markdown syntax elements"
-
-      4. Code Highlighting:
-         - "Write a Python function to calculate the Fibonacci sequence"
-         - "Show me how to create a simple HTML page with CSS"
-         - "Give me an example of a SQL query that joins two tables"
-         - "Write a JavaScript function to sort an array of objects by a property"
-
-      5. Context Memory:
-         - "My name is John"
-         - "What is my name?"
-         - "I work as a software developer"
-         - "What do I do for a living?"
-
-      6. Complex Conversation:
-         - "I have a cat named Whiskers"
-         - "She's 3 years old"
-         - "What can you tell me about my pet?"
-
-      The goal is to make it easier for users to test the various features of the chatbot without having to type complex queries, particularly useful for demonstration purposes.
-      </copy>```
+      The goal is to provide an easy way for users to test chatbot features while ensuring the conversation memory system works reliably for demonstration and practical use.
+      </copy>
+      ```
 
 2. Replace index.html file with new content in  "chatbot" folder
 

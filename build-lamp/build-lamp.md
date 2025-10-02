@@ -126,6 +126,6 @@ You may now **proceed to the next lab**
 
 ## Acknowledgements
 
-- **Author** - Craig Shallahamer, Applied AI Scientist, Viscosity North America
-- **Contributor** - Perside Foster, MySQL Solution Engineering 
-- **Last Updated By/Date** - Perside Foster, MySQL Solution Engineering , July 2025
+- Authors: Craig Shallahamer, Applied AI Scientist, Viscosity North America, Perside Foster, Open Source Principal Partner Solution Engineer
+- Contributors: Open Source Channel Enablement Team (Nick Mader, Chris Bates, Juliana Castro)
+- Last Updated: Perside Foster, October 2025

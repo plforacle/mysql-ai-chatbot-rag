@@ -285,60 +285,36 @@ This file structure separates the chatbot interface (in the `/chatbot` directory
 2. Download application code
 
     ```bash
-    <copy> sudo wget https://objectstorage.us-ashburn-1.oraclecloud.com/p/lY6fQynpuzzhKUsdBFCoFGgYPQ7f4GI-02clhriOCWjIa9jahypP2cy0j9ORr3qn/n/idazzjlcjqzj/b/livelab_apps/o/my-web-app.zip</copy>
+    <copy> sudo wget https://objectstorage.us-ashburn-1.oraclecloud.com/p/zadOmciLI8d7flsZL2lnsDaibDYxQ8bCS5dXnFrSQWpf38-CUE1GwAG2gUkHB5sk/n/idazzjlcjqzj/b/mysql-ai-store/o/chatbot-mysql-ai-rag.zip</copy>
     ```
 
 3. unzip Application code
 
     ```bash
-    <copy>sudo unzip my-web-app.zip</copy>
+    <copy>sudo unzip chatbot-mysql-ai-rag.zip</copy>
     ```
 
 4. View files in application folder structure
 
 
     ```bash
-    <copy>tree my-web-app</copy>
+    <copy>tree chatbot-mysql-ai-rag</copy>
     ```
     ![File Structure ](./images/file-structure.png "File Structure")
 
     
-5. Update the OpenAI API Key 
-
-    ```bash
-    <copy>sudo nano my-web-app/chatbot/api_key.php</copy>
-    ```
-
-    ![OpenAI API Key](./images/api-key.png "OpenAI API Key")
-
-
-6. Update file db_config.php to change the following values if needed
+5. Update the api_key.php files:
     - 'host' => **'localhost'**,
     - 'user' => **'admin'**,
-    - 'password' => **'Welcome#123'**,
-    - 'database' => **'sakila'**
+    - 'password' => **'Workshop2024!'**,
+    - 'database' => **'sakila'*
 
     ```bash
-    <copy>sudo nano my-web-app/rag_service/db_config.php</copy>
+    <copy>sudo nano chatbot-mysql-ai-rag/api_key.php</copy>
     ```
 
-    ![Config MySQL ](./images/db-config.png "Config MySQL")
+    ![MySQL AI Key](./images/api-key.png "MySQL AI Key")
 
-6. Update the chat_handler.php file to use your server's IP address
-
-    ```bash
-    <copy>sudo nano my-web-app/chatbot/chat_handler.php</copy>
-    ```
-
-    Find the following section and replace with your server's IP address:
-      **Note** - Easy search in nano ...  ctrl + w ... then enter **`$rag_api_url`**
-    
-    ```markdown
-    // Initialize cURL session to our RAG service
-    // IMPORTANT: Update this URL to match your server setup
-    //$rag_api_url = '../rag_service/rag_api.php'; 
-    $rag_api_url = 'http://your-server-ip/my-web-app/rag_service/rag_api.php';
-    ```
 
 ## Task 4: How to Check for Errors
 

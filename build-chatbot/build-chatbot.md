@@ -11,7 +11,7 @@ We'll start by designing the general web app UI, then move on to integrating an 
 Starting with a basic interface, you will progressively enhance your application to include:
 
 1. A responsive dark-mode UI with customizable styling
-2. Multiline text input capabilities
+2. Multi line text input capabilities
 3. Integration with OpenAI's API powerful language models
 4. Conversation memory to maintain context between messages
 5. Markdown parsing and code syntax highlighting
@@ -121,18 +121,18 @@ In this lab, you will be guided through the following tasks:
    - I am Captain Craig.
    - Hit Send (No response)
 
-## Task 2: Add Multiline Input Enhancement
+## Task 2: Add Multi line Input Enhancement
 
-1. **Prompt 2: Multiline Input Enhancement**
+1. **Prompt 2: Multi line Input Enhancement**
 
       Copy prompt to Claude.ai
 
       ```bash
-      <copy>Prompt 2: Multiline Input Enhancement
+      <copy>Prompt 2: Multi line Input Enhancement
 
       Files: I want completed files with updates included
       - index.html - Updated textarea in input section
-      - styles.css - Styling for multiline input
+      - styles.css - Styling for multi line input
 
       Please enhance the chatbot so the user has the ability to enter multiple lines, such as three lines, instead of just one. Is this possible?
       </copy>
@@ -171,48 +171,61 @@ In this lab, you will be guided through the following tasks:
 
 ## Task 3: Add LLM Integration
 
-1. **Prompt 3: LLM Integration**
+1. **Prompt 3: MySQL AI LLM Integration**
       Copy prompt to Claude.ai
 
       ```bash
       <copy>Prompt 3: MySQL AI Integration
-
       Files: I want completed files with updates included
-      - api_key.php - Store MySQL AI database connection details
-      - chat_handler.php - Process user input and connect to MySQL AI 9.4.1
-      - index.html - Updated with script to handle API calls
-      - styles.css - Updated to ensure full-screen display
+
+      api_key.php - Store MySQL AI database connection details
+      chat_handler.php - Process user input and connect to MySQL AI 9.4.1
+      index.html - Updated with script to handle API calls
+      styles.css - Updated to ensure full-screen display
 
       This step focuses on enhancing the existing code base enabling MySQL AI 9.4.1 LLM to respond and display its response.
-
       MySQL AI Integration Requirements:
-      - Use MySQL AI 9.4.1 with the sys.ML_GENERATE function
-      - Function syntax: sys.ML_GENERATE(prompt, JSON_OBJECT('task', 'generation', 'model_id', 'llama3.2-3b-instruct-v1'))
-      - The function returns JSON format: {"text": "response", "license": "..."}
-      - Extract only the "text" field from the JSON response for display
-      - Include proper JSON parsing and error handling for malformed responses
+
+      Use MySQL AI 9.4.1 with the sys.ML_GENERATE function
+      Function syntax: sys.ML_GENERATE(prompt, JSON_OBJECT('task', 'generation', 'model_id', 'llama3.2-3b-instruct-v1'))
+      The function returns JSON format: {"text": "response", "license": "..."}
+      Extract only the "text" field from the JSON response for display
+      Include proper JSON parsing and error handling for malformed responses
 
       Database Connection:
-      - Store connection details in api_key.php (security risk acknowledged)
-      - Use PDO with proper error handling and prepared statements
+
+      Store connection details in api_key.php (security risk acknowledged)
+      Use PDO with proper error handling and prepared statements
+
+      System Prompt Requirements:
+
+      Give direct, concise answers without unnecessary pleasantries or conversational filler
+      When asked for code, SQL, or technical examples, provide them immediately without asking for clarification unless genuinely ambiguous
+      Skip phrases like 'I'm glad you're here' or 'Before I get started'
+      Answer questions directly and focus on what was asked
+      Use formatting only when it improves clarity
 
       Frontend Integration:
-      - Add jQuery for AJAX functionality
-      - Handle form submission with POST to chat_handler.php
-      - Display responses in the existing chat dialog
-      - Include loading states and error messaging
+
+      Add jQuery for AJAX functionality
+      Handle form submission with POST to chat_handler.php
+      Display responses in the existing chat dialog
+      Include loading states and error messaging
 
       CSS Requirements:
-      - Maintain full-screen visual design from Step 1
-      - Ensure all container elements use width: 100%
-      - Main container uses width: 100vw
-      - HTML/body elements: width and height 100%, overflow hidden
+
+      Maintain full-screen visual design from Step 1
+      Ensure all container elements use width: 100%
+      Main container uses width: 100vw
+      HTML/body elements: width and height 100%, overflow hidden
 
       Your task is to code according to the above instructions and nothing else.
       </copy>
       ```
 
-2. Copy generated api\_key.php file to "chatbot"" folder **and Replace "YOUR\_OPENAI\_API_KEY\_HERE" with your actual API key**
+2. Copy generated api\_key.php file to "chatbot"" folder
+
+      **and Replace "YOUR\_OPENAI\_API_KEY\_HERE" with your actual API key**
 
     ```bash
     <copy> sudo nano api_key.php</copy>
@@ -321,6 +334,7 @@ In this lab, you will be guided through the following tasks:
    - I am Captain Craig.
    - I want to sail very far away from here! Will you join me?
    - Do you remember my name?
+   - Please generate a multi line SQL statement.
    - Please generate a multiline SQL statement.
 
 ## Task 5: Add Text Formatting Enhancement
@@ -426,6 +440,7 @@ In this lab, you will be guided through the following tasks:
 
    **TESTING**
    - I am Captain Craig.
+   - Please generate a multi line SQL statement.
    - Please generate a multiline SQL statement.
    - Please generate a 200 word story about a baby bird breaking out of its shell for the first time.
 
@@ -505,6 +520,8 @@ In this lab, you will be guided through the following tasks:
    ![Chatbot SQL Multi Line Copy](./images/chatbot-copy.png "Chatbot SQL Multi Line Copy")
 
    **TESTING**
+   
+   - Please generate a multi line SQL select statement that contains an error. do not explain the error, just show the SQL.
    - Please generate a multiline SQL select statement that contains an error. do not explain the error, just show the SQL.
    - Copy that text
    - Create a 'New Chat'
@@ -562,50 +579,75 @@ In this lab, you will be guided through the following tasks:
       Copy prompt to Claude.ai
 
       ```bash
-      <copy>Prompt 8: Sample Prompts Feature with Conversation Memory Improvements
-
+      <copy>Prompt 8: Sample Prompts Feature (Corrected)
       Files Modified:
-      - index.html - Add Sample Prompts menu item and popup dialog
-      - styles.css - Add styling for sample prompts popup and categories  
-      - chat_handler.php - Fix conversation memory context formatting for reliable AI responses
 
-      Enhance the chatbot with a Sample Prompts feature that allows users to select from predefined test queries, while also improving the conversation memory system for more reliable context handling.
+      index.html - Add Sample Prompts menu item and popup dialog
+      styles.css - Add styling for sample prompts popup and categories
 
+      Enhance the chatbot with a Sample Prompts feature that allows users to select from predefined test queries.
       Requirements:
-      1. Add a "Sample Prompts" item to the top menu bar between "New Chat" and "About"
-      2. Create a popup dialog that displays categorized sample queries with click-to-use functionality
-      3. Allow users to select any query to be automatically inserted into the input field
-      4. Organize sample prompts by feature type (Basic Conversation, Code Highlighting, Context Memory, etc.)
-      5. **Fix conversation memory context formatting to prevent AI confusion and ensure reliable responses**
+
+      Add a "Sample Prompts" item to the top menu bar between "New Chat" and "About"
+      Create a popup dialog that displays categorized sample queries with click-to-use functionality
+      Allow users to select any query to be automatically inserted into the input field
+      Organize sample prompts by feature type (Basic Conversation, Code Highlighting, Context Memory, etc.)
 
       Implementation details:
-      - Add a new menu item in the header section with proper event handling
-      - Create a large popup overlay with scrollable content and categorized sections
-      - Style sample prompts as clickable elements with hover effects and mobile responsiveness
-      - Implement JavaScript to populate the input field when a sample is clicked and close the popup
-      - Include multiline samples to demonstrate textarea capabilities
-      - **Update chat_handler.php conversation context building with cleaner formatting for the Llama model**
-      - **Improve session management with session regeneration for reliable history clearing**
-      - **Reduce conversation history limit to 10 messages to prevent token overflow**
+
+      Add a new menu item in the header section with proper event handling
+      Create a large popup overlay with scrollable content and categorized sections
+      Style sample prompts as clickable elements with hover effects and mobile responsiveness
+      Implement JavaScript to populate the input field when a sample is clicked and close the popup
+      Include multi line samples to demonstrate textarea capabilities
 
       Sample Prompts to Include:
-      1. Basic Conversation: "Hello, how are you today?", "What can you help me with?"
-      2. Multiline Input: Function examples with proper code formatting
-      3. Markdown Formatting: Requests for markdown explanations and examples
-      4. Code Highlighting: Python, HTML, SQL, and JavaScript code requests including "multiline SQL with error"
-      5. Context Memory: "My name is John", "What is my name?", "I work as a software developer", "What do I do for a living?"
-      6. Complex Conversation: "I have a cat named Whiskers", "She's 3 years old", "What can you tell me about my pet?"
 
-      **Critical Backend Fixes (chat_handler.php):**
-      - Simplify conversation context format using clear "User:" and "Assistant:" labels
-      - Add session regeneration to clear_history action for complete session cleanup
-      - Reduce conversation history limit from 20 to 10 messages
-      - Improve context building logic to prevent AI confusion with previous conversation fragments
-      - Ensure conversation memory works reliably for context-dependent queries
+      Basic Conversation:
 
-      **Important:** This prompt includes both the UI enhancement AND the necessary backend fixes to maintain conversation memory reliability. The conversation context formatting improvements are essential for the Llama 3.2 3B model to properly handle conversation history without confusion.
+      "Hello, how are you today?"
+      "What can you help me with?"
+      "Tell me a fun fact about technology"
 
-      The goal is to provide an easy way for users to test chatbot features while ensuring the conversation memory system works reliably for demonstration and practical use.
+
+      Multi line Input Demo:
+
+      Code review example with multi line JavaScript function
+
+
+      Markdown Formatting:
+
+      "Explain what markdown is and show examples"
+      "Show me markdown syntax for headers, lists, and links"
+
+
+      Code Highlighting:
+
+      "Write a Python function to calculate fibonacci numbers"
+      "Create an HTML form with validation"
+      "Generate a SQL statement that takes up several lines"
+      "Show me a JavaScript async/await example"
+      "Generate a SQL select statement that takes up several lines and contains an error. Do not explain the error."
+
+
+      Context Memory Test:
+
+      "My name is John"
+      "What is my name?"
+      "I work as a software developer"
+      "What do I do for a living?"
+
+
+      Complex Conversation:
+
+      "I have a cat named Whiskers"
+      "She's 3 years old and loves to play"
+      "What can you tell me about my pet?"
+
+
+
+      Important: Include cache-busting CSS link with incremented version number and ensure artifacts are named clearly (index.html and styles.css).
+      The goal is to provide an easy way for users to test chatbot features and demonstrate its capabilities through pre-written example prompts.
       </copy>
       ```
 

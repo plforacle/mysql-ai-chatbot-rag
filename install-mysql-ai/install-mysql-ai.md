@@ -1,4 +1,4 @@
-# Install MySQL Enterprise Edition
+# Install MySQL AI
 
 ## Introduction
 

@@ -86,8 +86,8 @@ You will complete the following phases and labs:
 
 
 4. Build and Validate Sakila Pure RAG pipeline
-   - Lab 7: Build and deploy the Pure RAG pipeline (semantic search + `sys.ML_GENERATE()`)
-   - Lab 8: Test functionality and validate data privacy
+   - Lab 7: Build, deploy, and test the Pure RAG Application
+
 
 You may now proceed to the next lab.
 

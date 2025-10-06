@@ -89,6 +89,7 @@ chatbot-mysql-ai-rag/
     ```bash
     <copy>tree chatbot-mysql-ai-rag</copy>
     ```
+    ![chatbot-mysql-ai-rag folder content](./images/chatbot-mysql-ai-rag-tree.png "chatbot-mysql-ai-rag folder content")
 
 5. Configure database credentials in `api_key.php`
 
@@ -96,7 +97,7 @@ chatbot-mysql-ai-rag/
     <copy>sudo nano chatbot-mysql-ai-rag/api_key.php</copy>
     ```
 
-    Update the following values:
+    Update to the following values:
     - `'host' => 'localhost'`
     - `'username' => 'admin'`
     - `'password' => 'Workshop2024!'`
@@ -110,17 +111,22 @@ chatbot-mysql-ai-rag/
     <copy>sudo chmod 755 .</copy>
     ```
 
-7. Check for errors in logs
+7. View the most recent PHP errors in real-time
 
-    Apache/PHP error log:
     ```bash
-    <copy>tail -f /var/log/apache2/error.log</copy>
+    <copy>sudo tail -f /var/log/php-fpm/www-error.log</copy>
     ```
 
-    Or PHP-FPM log:
+8. Clear the error log if it becomes too large or cluttered:
+
     ```bash
-    <copy>tail -f /var/log/php-fpm/error.log</copy>
+    <copy>sudo truncate -s 0 /var/log/php-fpm/www-error.log</copy>
     ```
+9. These commands are particularly helpful when:
+    - The application isn't responding as expected
+    - You're seeing blank pages or incomplete responses
+    - The RAG functionality isn't retrieving film information correctly
+    - There are issues with the MySQL AI connections
 
 ## Task 3: Run and Test the Application
 
@@ -162,7 +168,7 @@ chatbot-mysql-ai-rag/
     - Incomplete title information
     - Natural language questions
 
-This demonstrates the power of combining MySQL AI vector capabilities with RAG techniques for creating domain-specific applications with improved accuracy and relevance.
+This demonstrates the power of combining MySQL AI capabilities with RAG techniques for creating domain-specific applications with improved accuracy and relevance.
 
 ## Learn More
 

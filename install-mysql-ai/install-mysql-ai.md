@@ -37,7 +37,7 @@ This lab assumes you have:
     ![SSH first login](./images/ssh-first-login.png "SSH first login")
 
 
-1. Verify OCI compute instance 600GB storage is available for use
+2. Verify OCI compute instance 600GB storage is available for use
 
     ```bash
     <copy>df -h</copy>
@@ -64,28 +64,28 @@ This lab assumes you have:
 
 ## Task 2: Prepare  MySQL AI for installation
 
-1. Create installation folder
+3. Create installation folder
 
     ```bash
     <copy>mkdir ~/mysql-ai-workshop</copy>
     ```
-2. Go to new directory
+4. Go to new directory
 
     ```bash
     <copy>cd ~/mysql-ai-workshop</copy>
     ```
-3. Download MySQL AI file
+5. Download MySQL AI file
 
     ```bash
     <copy>wget https://objectstorage.us-ashburn-1.oraclecloud.com/p/ywKKB1ymwLAeMUa3yiA4KE1l1EUu-xz4pXJC_XCPrxzUe3HKcKkTIYrUWk5gPk1C/n/idazzjlcjqzj/b/mysql-ai-store/o/V1051679-01.zip</copy>
     ```
-4. Unzip the downloaded file
+6. Unzip the downloaded file
 
     ```bash
     <copy>unzip V1051679-01.zip</copy>
     ```
 
-5. Make sure the required files are available.
+7. Make sure the required files are available.
 
     ```bash
     <copy>ls -la

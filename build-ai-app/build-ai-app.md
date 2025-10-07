@@ -12,6 +12,7 @@ _Estimated Lab Time:_ 30 minutes
 
 - Understand the application architecture
 - Deploy and configure the application
+- Check for Errors
 - Run and test the RAG application
 
 ### Prerequisites
@@ -111,24 +112,30 @@ chatbot-mysql-ai-rag/
     <copy>sudo chmod 755 .</copy>
     ```
 
-7. View the most recent PHP errors in real-time
+
+
+## Task 3: Check for Errors
+
+1. View the most recent PHP errors in real-time
 
     ```bash
     <copy>sudo tail -f /var/log/php-fpm/www-error.log</copy>
     ```
 
-8. Clear the error log if it becomes too large or cluttered:
+2. Clear the error log if it becomes too large or cluttered:
 
     ```bash
     <copy>sudo truncate -s 0 /var/log/php-fpm/www-error.log</copy>
     ```
-9. These commands are particularly helpful when:
+3. To exit: Press Ctrl+C to stop following the log and return to your normal command prompt.
+
+    **Note:** These commands are particularly helpful when:
     - The application isn't responding as expected
     - You're seeing blank pages or incomplete responses
     - The RAG functionality isn't retrieving film information correctly
     - There are issues with the MySQL AI connections
 
-## Task 3: Run and Test the Application
+## Task 4: Run and Test the Application
 
 1. Navigate to the application in your browser:
 
@@ -168,7 +175,7 @@ chatbot-mysql-ai-rag/
     - Incomplete title information
     - Natural language questions
 
-This demonstrates the power of combining MySQL AI capabilities with RAG techniques for creating domain-specific applications with improved accuracy and relevance.
+    **Note:** This demonstrates the power of combining MySQL AI capabilities with RAG techniques for creating domain-specific applications with improved accuracy and relevance.
 
 ## Learn More
 

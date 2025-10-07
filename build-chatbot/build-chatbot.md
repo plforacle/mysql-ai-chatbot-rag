@@ -31,6 +31,7 @@ In this lab, you will be guided through the following tasks:
 
 - Execute each prompt to build the application
 - Test each task before moving to the next one.
+- Check for errors
 
 
 ### Prerequisites
@@ -674,6 +675,15 @@ In this lab, you will be guided through the following tasks:
       ```
 
 4. From your local machine browser, test the Application Example: http://129.213.167.../chatbot
+
+## Task 9: Check for Errors
+
+1. Monitor PHP-FPM errors in real-time to troubleshoot issues with your PHP application.
+
+      ```bash
+      <copy>sudo tail -f /var/log/php-fpm/error.log</copy>
+      ```
+2. To exit: Press Ctrl+C to stop following the log and return to your normal command prompt.
 
 You may now **proceed to the next lab**
 

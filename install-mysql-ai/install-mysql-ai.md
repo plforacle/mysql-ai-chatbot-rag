@@ -62,6 +62,29 @@ This lab assumes you have:
     - Available: 570GB free
     - Mounted at: / (root directory)
 
+    > **Important:** if the **df-h** results shows you don’t yet have the extra disk space you added available
+    > - Run the following command To claim the added block volume space run
+
+     ```bash
+    <copy>sudo /usr/libexec/oci-growfs</copy>
+    ```
+
+     > - Confirm the the extra disk space is  added
+
+    ```bash
+    <copy>df -h</copy>
+    ```
+    ![Available Storage](./images/aivailable-storage.png "Available Storage")
+
+    The following output entry means: You're all set! You have 570GB of free space available right now
+
+    **/dev/mapper/ocivolume-root  589G   20G  570G   4% /**
+    - Total size: 589GB (close to your 600GB - some space is reserved for filesystem overhead)
+    - Used: 20GB
+    - Available: 570GB free
+    - Mounted at: / (root directory)
+
+
 ## Task 2: Prepare  MySQL AI for installation
 
 3. Create installation folder

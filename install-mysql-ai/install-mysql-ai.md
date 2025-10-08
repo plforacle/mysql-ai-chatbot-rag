@@ -40,12 +40,16 @@ This lab assumes you have:
 2. Verify OCI compute instance 600GB storage is available for use
 
     ```bash
+    <copy>sudo /usr/libexec/oci-growfs -h</copy>
+    ```
+
+    ```bash
     <copy>df -h</copy>
     ```
 
     > **Important:** MySQL AI requires approximately **500GB of disk space** for:
     > - MySQL Server installation
-    > - Embedded LLM models (llama3.2, e5-small, all_minilm_l12_v2)
+    > - Embedded LLM models (llama3.2, e5-small, all\_minilm\_l12\_v2)
     > - Vector storage and indexes
     > - Database files and logs
     >
@@ -61,29 +65,6 @@ This lab assumes you have:
     - Used: 20GB
     - Available: 570GB free
     - Mounted at: / (root directory)
-
-    > **Important:** if the **df-h** results shows you don’t yet have the extra disk space you added available
-    > - Run the following command To claim the added block volume space run
-
-     ```bash
-    <copy>sudo /usr/libexec/oci-growfs</copy>
-    ```
-
-     > - Confirm the the extra disk space is  added
-
-    ```bash
-    <copy>df -h</copy>
-    ```
-    ![Available Storage](./images/aivailable-storage.png "Available Storage")
-
-    The following output entry means: You're all set! You have 570GB of free space available right now
-
-    **/dev/mapper/ocivolume-root  589G   20G  570G   4% /**
-    - Total size: 589GB (close to your 600GB - some space is reserved for filesystem overhead)
-    - Used: 20GB
-    - Available: 570GB free
-    - Mounted at: / (root directory)
-
 
 ## Task 2: Prepare  MySQL AI for installation
 

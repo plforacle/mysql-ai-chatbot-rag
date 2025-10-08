@@ -76,7 +76,7 @@ chatbot-mysql-ai-rag/
 2. Download application code
 
     ```bash
-    <copy>sudo wget https://objectstorage.us-ashburn-1.oraclecloud.com/p/zadOmciLI8d7flsZL2lnsDaibDYxQ8bCS5dXnFrSQWpf38-CUE1GwAG2gUkHB5sk/n/idazzjlcjqzj/b/mysql-ai-store/o/chatbot-mysql-ai-rag.zip</copy>
+    <copy>sudo wget https://objectstorage.us-ashburn-1.oraclecloud.com/p/Jpp9H3R-FwV2DTHA1m3NkjBcPM5VyN5m2ASaizg1BPnG6x79hmJMig6g-98kFSKB/n/idazzjlcjqzj/b/mysql-ai-store/o/chatbot-mysql-ai-rag.zip</copy>
     ```
 
 3. Unzip application code

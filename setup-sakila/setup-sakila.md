@@ -97,6 +97,10 @@ This lab assumes you have:
     </copy>
     ```
 
+    ![CREATE TABLE film_rag results](./images/film-rag-results.png "CREATE TABLE film_rag results")
+
+
+
 2. Populate with enriched film data
 
     ```bash

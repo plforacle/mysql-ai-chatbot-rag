@@ -67,6 +67,10 @@ chatbot-mysql-ai-rag/
 
 ## Task 2: Deploy and Configure the Application
 
+> **Note:** This application is the exact same application that you built in **Lab 5: Build Chatbot Application**. 
+We just extended it to support RAG. So don't feel like you created the chatbot app for no purpose.
+
+
 1. Navigate to the development folder
 
     ```bash
@@ -99,10 +103,14 @@ chatbot-mysql-ai-rag/
     ```
 
     Update to the following values:
-    - `'host' => 'localhost'`
-    - `'username' => 'admin'`
-    - `'password' => 'Workshop2024!'`
-    - `'database' => 'sakila'`
+    - `$db_config = [`
+    - `'host' => 'localhost',`
+    - `'port' => '3306',`
+    - `'database' => 'sakila',`
+    - `'username' => 'admin',`
+    - `'password' => 'Workshop2024!',`
+    - `'charset' => 'utf8mb4'`
+    - `];
 
 6. Set proper permissions
 
@@ -122,7 +130,7 @@ chatbot-mysql-ai-rag/
     <copy>sudo tail -f /var/log/php-fpm/www-error.log</copy>
     ```
 
-2. Clear the error log if it becomes too large or cluttered:
+2. Clear an existing error log if it becomes too large or cluttered:
 
     ```bash
     <copy>sudo truncate -s 0 /var/log/php-fpm/www-error.log</copy>
@@ -152,20 +160,20 @@ chatbot-mysql-ai-rag/
 
 3. Try these example queries:
 
-    - "Tell me about ALIEN CENTER"
-    - "What's the plot of APOCALYPSE FLAMINGOS?"
-    - "Is BEAST HUNCHBACK a comedy or drama?"
-    - "Recommend action movies"
-    - "Movies about friendship and loyalty"
+    - Tell me about ALIEN CENTER
+    - What's the plot of APOCALYPSE FLAMINGOS?
+    - Is BEAST HUNCHBACK a comedy or drama?
+    - Recommend action movies
+    - Movies about friendship and loyalty
 
 4. Test edge cases:
 
     - Click "New Chat" to start fresh
-    - Try "Tell me about CHICAGO NOOOORTH" (with typo)
-    - Then try "Tell me about CHICAGO NORTH" (correct)
-    - Click "New Chat" again
-    - Ask "Do you know when Chicago N. was released?"
-    - Try "I'd like to watch a movie with a composer and a detective. I want it to be fun. What do you recommend?"
+    - Try **Tell me about CHICAGO NOOOORTH** (with typo)
+    - Then try **Tell me about CHICAGO NORTH** (correct)
+    - Click **New Chat** again
+    - Ask **Do you know when Chicago N. was released?**
+    - Try **I'd like to watch a movie with a composer and a detective. I want it to be fun. What do you recommend?**
 
 5. Observe how the system handles:
 

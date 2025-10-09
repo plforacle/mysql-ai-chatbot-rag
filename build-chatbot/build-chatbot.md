@@ -2,17 +2,17 @@
 
 ## Introduction
 
-In this lab, you will be building the chatbot portion of the final RAG application. We'll explore the new world of AI assistance, experiencing collaboration with an AI towards a common goal. Rather than static, one-off instructions given to Claude 3.7 Sonnet, we'll begin to think of the AI as a working companion, empowering you to accomplish things you couldn't achieve before.
+In this lab, you will be building the chatbot portion of the final RAG application. We'll explore the new world of AI assistance, experiencing collaboration with an AI towards a common goal. Rather than static, one-off instructions given to Claude Sonnet 4.5, we'll begin to think of the AI as a working companion, empowering you to accomplish things you couldn't achieve before.
 
-We will use Claude 3.7 Sonnet to assist us in building the web app through conversational and iterative prompting. We will collaborate with Claude to handle all the PHP, CSS, HTML, and JavaScript coding. In one window, we'll work with Claude as our coding assistant, in another, we'll work with the code (there isn't much code), and in a third window, we'll run our web app.
+We will use Claude Sonnet to assist us in building the web app through conversational and iterative prompting. We will collaborate with Claude to handle all the PHP, CSS, HTML, and JavaScript coding. In one window, we'll work with Claude as our coding assistant, in another, we'll work with the code (there isn't much code), and in a third window, we'll run our web app.
 
-We'll start by designing the general web app UI, then move on to integrating an OpenAI LLM for AI responses, adding conversation memory, buttons and modals, and formatting for various types of text. We'll even experiment with fun features, like incorporating a Pirate personality. By the end, our web app will be robust, engaging, and ready for collaborative interactions.
+We'll start by designing the general web app UI, then move on to integrating an MySQL AI 9.4.1 LLM  for AI responses, adding conversation memory, buttons and modals, and formatting for various types of text. We'll even experiment with fun features. By the end, our web app will be robust, engaging, and ready for collaborative interactions.
 
 Starting with a basic interface, you will progressively enhance your application to include:
 
 1. A responsive dark-mode UI with customizable styling
 2. Multi line text input capabilities
-3. Integration with OpenAI's API powerful language models
+3. Integration with MySQL AI powerful language models
 4. Conversation memory to maintain context between messages
 5. Markdown parsing and code syntax highlighting
 6. User-friendly features like code copying and sample prompts
@@ -226,11 +226,19 @@ In this lab, you will be guided through the following tasks:
 
 2. Copy generated api\_key.php file to "chatbot"" folder
 
-      **and Replace "YOUR\_OPENAI\_API_KEY\_HERE" with your actual API key**
-
     ```bash
     <copy> sudo nano api_key.php</copy>
     ```
+
+  **Update to the following values:**
+
+    // MySQL AI Database Connection Details
+    - `define('DB_HOST', 'localhost');`
+    - `define('DB_NAME', 'mysql');`
+    - `define('DB_USER', 'admin');`
+    - `define('DB_PASS', 'Workshop2024!');`
+    - `define('DB_CHARSET', 'utf8mb4');`
+
 
 3. Copy generated chat\_handler.php file to "chatbot"" folder
 
@@ -260,16 +268,20 @@ In this lab, you will be guided through the following tasks:
       <copy> sudo nano styles.css</copy>
       ```
 
-6. From your local machine browser, test the Application Example: http://129.213.167.../chatbot 
+6. From your local machine browser, test the Application Example: http://129.213.167.../chatbot
+
+   **Note:** The first LLM query will take awhile... please be patient.
 
    **TESTING:**
    - I am Captain Craig.
    - I want to sail very far away from here! Will you join me?
    - Do you remember my name?
 
-      **NOTE - In case you see the following error
-            " Sorry, there was an error processing your request. Please try again later. (Error: )"
-      - Review the api_key.php file and make sure you have entered the correct API key .
+      **Note:** In case you see the following error
+
+      **" Sorry, there was an error processing your request. Please try again later. (Error: )"**
+
+      - Review the api_key.php file and make sure you have entered the correct database information .
 
 ## Task 4: Add Conversation Memory
 
@@ -297,7 +309,7 @@ In this lab, you will be guided through the following tasks:
       Implementation details:
       - Add session initialization in chat_handler.php
       - Create a conversation history array structure with system, user, and assistant messages
-      - Include the conversation history in each API request to OpenAI
+      - Include the conversation history in each API request to MySQL AI 
       - Update the system prompt to instruct the AI to remember user information
       - Add a clear_history action to reset the conversation when "New Chat" is clicked
 

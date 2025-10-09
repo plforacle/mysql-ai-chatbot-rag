@@ -149,6 +149,8 @@ We just extended it to support RAG. So don't feel like you created the chatbot a
 
     `http://your-server-ip/chatbot-mysql-ai-rag/`
 
+     **Note:** The first LLM query will take awhile... please be patient.
+
 2. Test using sample prompts by clicking the "Sample Prompts" menu
 
     Categories include:

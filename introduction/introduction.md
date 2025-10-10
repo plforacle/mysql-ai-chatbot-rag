@@ -6,6 +6,11 @@
 
 In this workshop, you will use MySQL Enterprise Edition 9.4.1 with MySQL AI's built-in language models, vector search, and relational capabilities to build a privacy-preserving film recommendation and Q&A application. You will see how a traditional relational database can power a complete RAG workflow—embeddings, semantic search, and response generation—entirely inside MySQL, keeping your data private and under your control.
 
+### View the documentation:
+- [MySQL AI](https://dev.mysql.com/doc/mysql-ai/9.4/en/)
+
+
+
 ### What is MySQL Enterprise Edition for MySQL AI?
 
 MySQL Enterprise Edition for MySQL AI integrates machine learning directly into the database. Announced in April 2025, it enables you to:
@@ -130,7 +135,7 @@ Cost and performance:
 
 ## Learn More
 
-- MySQL AI Announcement Blog: https://blogs.oracle.com/mysql/post/announcing-mysql-ai
+- [MySQL AI Announcement Blog](https://blogs.oracle.com/mysql/post/announcing-mysql-ai)
 
 ## Acknowledgements
 

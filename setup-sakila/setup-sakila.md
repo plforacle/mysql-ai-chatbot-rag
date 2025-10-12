@@ -119,6 +119,7 @@ This lab assumes you have:
     WHERE embedding IS NULL;</copy>
     ```
 4. Wait 5 minutes.
+
 5. Check the embedding results.
 
     ```bash
@@ -129,11 +130,44 @@ This lab assumes you have:
     FROM film_rag;</copy>
     ```
     ![Embedding results](./images/embedding-results.png "Embedding results")
-6. Exit MySQL.
+
+6. Create a copy of the film_list view, which contains film context.
+
+    ```bash
+    <copy>create table film_list_rag as select * from film_list;</copy>
+    ```
+7. Rename fid column to film_id.
+
+    ```bash
+    <copy>alter table film_list_rag rename column fid to film_id;</copy>
+    ```
+8. Add column release_year and update.
+
+    ```bash
+    <copy>alter table film_list_rag add column release_year integer;
+    UPDATE film_list_rag
+    JOIN film ON film_list_rag.film_id = film.film_id
+    SET film_list_rag.release_year = film.release_year;
+    </copy>
+    ```
+
+9. Add the embedding columns for performing similarity searches.
+
+    ```bash
+    <copy>alter table film_list_rag add column embedding_text text;</copy>
+    ```
+
+    ```bash
+    <copy>alter table film_list_rag add column vector_embedding VECTOR(384) COMMENT 'GENAI_OPTIONS=EMBED_MODEL_ID=all_minilm_l12_v2';</copy>
+    ```
+    ![Show film-list-rag table](./images/film-list-rag.png "Show film-list-rag table")
+
+10. Exit MySQL.
 
     ```bash
     <copy>EXIT;</copy>
     ```
+
 You may now **proceed to the next lab**
 
 ## Learn More

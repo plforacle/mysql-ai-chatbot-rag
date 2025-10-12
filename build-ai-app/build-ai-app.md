@@ -120,7 +120,13 @@ We just extended it to support RAG. So don't feel like you created the chatbot a
     <copy>sudo chmod 755 .</copy>
     ```
 
+7. Generate the vector embeddings
 
+    ```bash
+    <copy>php /var/www/html/chatbot-mysql-ai-rag/generate_embeddings.php</copy>
+    ```
+
+    ![Vector embeddings results start](./images/generate-embedding.png "Vector embeddings results start")
 
 ## Task 3: Check for Errors
 

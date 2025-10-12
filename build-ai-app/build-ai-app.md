@@ -28,24 +28,18 @@ _Estimated Lab Time:_ 30 minutes
 
 ## Task 1: Understand the Application
 
-A complete RAG chatbot demonstrating MySQL AI's in-database semantic search and LLM inference. All AI operations (embeddings, search, LLM) run inside MySQL - zero external API calls.
+A RAG chatbot using MySQL AI for in-database semantic search and LLM inference.
 
 **Key Features:**
+- All AI operations in MySQL (no external APIs)
+- 7-section super prompt with strict knowledge boundaries
+- Similarity filtering (0.30 threshold) for quality results
+- Session-based history (4 turns max)
 
-- Complete RAG implementation with proper prompt engineering
-- Data privacy - everything stays in MySQL
-- Well-documented code with extensive comments
-- Production-ready patterns - error handling, session management
-- Configurable - easy to tune RAG parameters
-- Sophisticated prompt - 7-section "super prompt" with AI identity and strict rules
+![RAG architecture diagram](./images/rag-architecture-diagram.png "RAG request-response flow")
 
-**Notable Design Decisions**
+**Flow:** Query → Semantic search → Build super prompt (AI identity + rules + contexts) → MySQL LLM generates response
 
-- JSON contexts for LLM (more efficient than plain text)
-- Similarity threshold filtering (0.30) to prevent low-quality matches
-- Conversation history windowing (max 4 turns)
-- HEX/UNHEX encoding for PDO compatibility with VECTOR type
-- Semantic enrichment in embedding text (e.g., "family-friendly" markers)
 
 **File Structure**
 ```
@@ -58,23 +52,7 @@ chatbot-mysql-ai-rag/
 └── styles.css               # Styling
 ```
 
-**RAG Workflow**
 
-```
-User Query
-  ↓
-Generate embedding (ML_EMBED_ROW)
-  ↓
-Similarity search (DISTANCE)
-  ↓
-Build JSON contexts
-  ↓
-Create super prompt
-  ↓
-LLM generation (ML_GENERATE)
-  ↓
-Response
-```
 
 ## Task 2: Deploy and Configure the Application
 
